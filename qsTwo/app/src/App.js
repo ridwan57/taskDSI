@@ -4,7 +4,7 @@ import { useState } from "react";
 import Home from "./pages/Home/Home";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("ridwan57@we");
   const logout = () => {
     setUser(null);
   };
@@ -22,8 +22,6 @@ function App() {
       ) : (
         <Login loginData={loginData} />
       )}
-      <br />
-      <p>email: ridwan@gmail.com password: 123 </p>
     </div>
   );
 }

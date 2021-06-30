@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import styles from "./Login.module.css";
 function validateEmail(email) {
   const re =
     /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -32,8 +32,9 @@ const Login = ({ loginData }) => {
     loginData(email);
   };
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className={styles.container}>
+      <h1 className={styles.heading}> Login Form</h1>
+      <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="email"
           name="email"
@@ -52,7 +53,9 @@ const Login = ({ loginData }) => {
             setPassword(e.target.value);
           }}
         />
-        <button onClick={handleSubmit}>Login</button>
+        <button className={styles.btn} onClick={handleSubmit}>
+          Login
+        </button>
         {error && (
           <h1
           // style={{ color: "red" }}
@@ -61,7 +64,7 @@ const Login = ({ loginData }) => {
           </h1>
         )}
       </form>
-    </>
+    </div>
   );
 };
 

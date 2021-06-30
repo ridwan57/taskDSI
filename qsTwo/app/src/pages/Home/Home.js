@@ -1,12 +1,17 @@
 import React from "react";
-
+import styles from "./Home.module.css";
 const Authenticated = ({ user, logout }) => {
   return (
-    <div>
-      <h1>{user} logged in</h1>
-      <button style={{ cursor: "pointer" }} onClick={logout}>
-        Logout
-      </button>
+    <div className={styles.container}>
+      <div className={styles.navbar}>
+        <button className={styles.btn} onClick={logout}>
+          Logout
+        </button>
+        <button className={styles.btn}>
+          {user.toString().split("@")[0].slice(0, 6)}
+        </button>
+      </div>
+      <h1 className={styles.heading}>{user} logged in</h1>
     </div>
   );
 };
