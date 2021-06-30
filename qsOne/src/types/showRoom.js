@@ -1,13 +1,14 @@
+/* eslint-disable */
 const showRoom = [];
 
-//three types
+// three types
 const vehicle = {
   normalVehicle: "normalVehicle",
   sportsVehicle: "sportsVehicle",
   heavyVehicle: "heavyVehicle",
 };
 
-//modify keys
+// modify keys
 function modify(initial, update) {
   const newData = initial.filter(
     ({ name: objName }) => objName !== update.name
@@ -16,7 +17,7 @@ function modify(initial, update) {
   return [...newData, update];
 }
 
-//as per requirement
+// as per requirement
 
 const normalVehicle = [
   { name: "model", type: "number" },

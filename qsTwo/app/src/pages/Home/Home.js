@@ -1,6 +1,9 @@
 import React from "react";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Home.module.css";
-const Authenticated = ({ user, logout }) => {
+const Home = () => {
+  const { user, logout } = useAuth();
+  console.log("home");
   if (!user) return null;
   return (
     <div className={styles.container}>
@@ -17,4 +20,4 @@ const Authenticated = ({ user, logout }) => {
   );
 };
 
-export default Authenticated;
+export default Home;

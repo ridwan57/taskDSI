@@ -14,24 +14,32 @@
 }
 .heading {
   font-size: 2rem;
-  color: rgb(24, 24, 24);
-  background-color: #ffffff51;
-  text-transform: uppercase;
+  color: rgb(0, 0, 0);
+  /* background-color: #15151551; */
+  padding: 0.2rem 0.4rem;
 }
 .btn {
   margin-top: 2rem;
-  width: 10rem;
-  background-color: rgb(38, 29, 22);
-  padding: 0.4rem 0.6rem;
+  width: 12rem;
+  height: auto;
+  background-color: rgb(162, 58, 13);
+  padding: 0.5rem 0.7rem;
 
   border-radius: 0.4rem;
 
-  font-size: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   margin-right: 1rem;
-  color: rgb(255, 255, 255);
+  color: rgba(255, 255, 255, 0.653);
   text-transform: uppercase;
   /* letter-spacing: 0.7rem; */
 
   text-decoration: none; /* remove underline from anchors */
+  transition: all ease-in 0.1s;
+}
+
+.btn:hover {
+  transform: scale(0.95);
+  background-color: rgb(201, 57, 57);
+  color: rgb(255, 255, 255);
 }

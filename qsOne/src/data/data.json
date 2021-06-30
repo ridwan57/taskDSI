@@ -23,6 +23,34 @@
             "engineType": "diesel",
             "weight": 5,
             "type": "heavyVehicle"
+        },
+        {
+            "model": 78,
+            "enginePower": 56,
+            "tireSize": 34,
+            "engineType": "gas",
+            "type": "normalVehicle"
+        },
+        {
+            "model": 56,
+            "enginePower": 56,
+            "tireSize": 56,
+            "engineType": "oil",
+            "type": "normalVehicle"
+        },
+        {
+            "model": 5555,
+            "enginePower": 5,
+            "tireSize": 5,
+            "engineType": "oil",
+            "type": "normalVehicle"
+        },
+        {
+            "model": 9,
+            "enginePower": 7,
+            "tireSize": 76,
+            "engineType": "oil",
+            "type": "normalVehicle"
         }
     ]
 }

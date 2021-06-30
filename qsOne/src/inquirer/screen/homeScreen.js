@@ -1,7 +1,8 @@
+/* eslint-disable */
 module.exports = {};
 module.exports.homeScreen = homeScreen;
 const inquirer = require("inquirer");
-const { home } = require("../../types/typeList");
+// const { home } = require("../../types/typeList");
 const { createScreen } = require("./createScreen");
 const { removeScreen } = require("./removeScreen");
 const { viewScreen } = require("./viewScreen");
@@ -14,20 +15,17 @@ function homeScreen() {
     .prompt([
       {
         type: "list",
-        message: "Go to menu - ",
+        message: "Go to menu: ",
         name: "type",
         choices: types,
       },
     ])
     .then((answers) => {
-      // console.log("answers:", answers);
       switch (answers.type) {
         case "create":
-          // console.log("created");
           createScreen();
           break;
         case "remove":
-          // console.log("created");
           removeScreen();
           break;
         case "view":

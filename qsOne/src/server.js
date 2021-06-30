@@ -1,10 +1,7 @@
-const types = ["normal", "sports", "heavy"];
-var inquirer = require("inquirer");
+/* eslint-disable  */
+const figlet = require("figlet");
 const { homeScreen } = require("./inquirer/screen/homeScreen");
 // const { typeList, anotherList, home } = require("./inquirer/typeList");
-const chalk = require("chalk");
-
-var figlet = require("figlet");
 
 figlet("Vehicle Showroom System!!", function (err, data) {
   if (err) {
@@ -15,4 +12,4 @@ figlet("Vehicle Showroom System!!", function (err, data) {
   console.log(data);
 });
 homeScreen();
-// console.log(chalk.blue("Hello world!"));
+

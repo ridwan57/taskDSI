@@ -1,9 +1,11 @@
+/* eslint-disable  */
 module.exports = {};
 module.exports.viewScreen = viewScreen;
-const inquirer = require("inquirer");
+
+const chalk = require("chalk");
 const { readDataFromJson } = require("../../data/index");
 const { homeScreen } = require("./homeScreen");
-const chalk = require("chalk");
+
 function viewScreen() {
   const data = readDataFromJson();
 
@@ -11,6 +13,7 @@ function viewScreen() {
   data.vehicles?.forEach((element) => {
     console.table(element);
   });
+  console.log(chalk.green("visitor count: "));
   console.table({ visitorCount: data.visitorCount });
   // console.table(JSON.stringify(data));
   // console.log(JSON.stringify(data));

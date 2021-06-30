@@ -16,5 +16,13 @@
     "enquirer": "^2.3.6",
     "figlet": "^1.5.0",
     "inquirer": "^8.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.2"
   }
 }

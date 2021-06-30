@@ -1,6 +1,8 @@
+/* eslint-disable */
+
 const showRoom = [];
 
-//three types
+
 const vehicle = {
   normalVehicle: "normalVehicle",
   sportsVehicle: "sportsVehicle",
@@ -56,7 +58,7 @@ showRoom.push({ type: vehicle.heavyVehicle, data: heavyVehicle });
 // console.log(JSON.stringify(showRoom));
 
 // const showRoom = [{ type: "normalVehicle", data: normalVehicle }];
-module.exports = {
-  showRoom,
-  vehicleTypes: vehicle,
-};
+// module.exports = {
+//   showRoom,
+//   vehicleTypes: vehicle,
+// };

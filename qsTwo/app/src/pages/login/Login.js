@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import LoginForm from "../../component/form/LoginForm";
+import { useAuth } from "../../hooks/useAuth";
 import styles from "./Login.module.css";
 function validateEmail(email) {
   const re =
@@ -6,10 +8,12 @@ function validateEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 validateEmail("ridwan@gmail.com");
-const Login = ({ loginData }) => {
+const Login = () => {
+  console.log("login");
+  const { loginData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [auth, setAuth] = useState();
+
   const [error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,39 +35,19 @@ const Login = ({ loginData }) => {
 
     loginData(email);
   };
+  const propsForLogin = {
+    handleSubmit,
+    styles,
+    email,
+    setEmail,
+    password,
+    error,
+    setPassword,
+  };
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}> Login Form</h1>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <button className={styles.btn} onClick={handleSubmit}>
-          Login
-        </button>
-        {error && (
-          <h1
-          // style={{ color: "red" }}
-          >
-            Error: {error}
-          </h1>
-        )}
-      </form>
+      <LoginForm {...propsForLogin} />
     </div>
   );
 };
