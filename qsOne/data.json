@@ -1,7 +1,31 @@
-{
-    "model": 5,
-    "enginePower": 5,
-    "tireSize": 5,
-    "engineType": "oil",
-    "turbo": 5
-}
+[
+    {
+        "model": 90,
+        "enginePower": 8,
+        "tireSize": 90,
+        "engineType": "diesel",
+        "weight": 90,
+        "type": "heavyVehicle"
+    },
+    {
+        "model": 8,
+        "enginePower": 90,
+        "tireSize": 8,
+        "engineType": "gas",
+        "type": "normalVehicle"
+    },
+    {
+        "model": null,
+        "enginePower": null,
+        "tireSize": null,
+        "engineType": "oil",
+        "type": "normalVehicle"
+    },
+    {
+        "model": null,
+        "enginePower": null,
+        "tireSize": null,
+        "engineType": "oil",
+        "type": "normalVehicle"
+    }
+]

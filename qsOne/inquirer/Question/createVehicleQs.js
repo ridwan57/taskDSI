@@ -23,7 +23,8 @@ const qsObjByTypes = (vehicleType) => {
       choices: defaultValues,
       validate: (input) => {
         // console.log("input:", input);
-        return !isNaN(input) && typeof input === "number";
+        if (typeof input === "number") return true;
+        return "Enter valid input";
       },
     };
     return qsObj;
@@ -45,14 +46,17 @@ const qs = [
     // choices: types,
   },
 ];
-function createVehicleQs() {
+function createVehicleQs(type) {
   const types = ["create", "remove", "view"];
   inquirer
-    .prompt(qsObjByTypes(vehicleTypes.sportsVehicle))
+    .prompt(qsObjByTypes(type))
     .then((answers) => {
       console.log("answers really:", answers);
       console.log("ok");
-      createVehicle(answers);
+      createVehicle({
+        ...answers,
+        type,
+      });
       return homeScreen();
       console.log("ok");
     })

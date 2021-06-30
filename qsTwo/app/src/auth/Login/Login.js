@@ -37,7 +37,7 @@ const Login = ({ loginData }) => {
         <input
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="Email"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -52,8 +52,14 @@ const Login = ({ loginData }) => {
             setPassword(e.target.value);
           }}
         />
-        <button onClick={handleSubmit}>Submit</button>
-        {error && <h1 style={{ color: "red" }}>Error: {error}</h1>}
+        <button onClick={handleSubmit}>Login</button>
+        {error && (
+          <h1
+          // style={{ color: "red" }}
+          >
+            Error: {error}
+          </h1>
+        )}
       </form>
     </>
   );

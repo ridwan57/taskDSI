@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Login from "./Login";
+import Login from "./auth/Login/Login";
 import { useState } from "react";
-import Authenticated from "./Authenticated";
+import Home from "./pages/Home/Home";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -19,7 +18,7 @@ function App() {
   return (
     <div className="App">
       {user ? (
-        <Authenticated user={user} logout={logout} />
+        <Home user={user} logout={logout} />
       ) : (
         <Login loginData={loginData} />
       )}

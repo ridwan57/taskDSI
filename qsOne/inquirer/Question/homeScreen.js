@@ -3,10 +3,12 @@ module.exports.homeScreen = homeScreen;
 const inquirer = require("inquirer");
 const { home } = require("../typeList");
 const { createScreen } = require("./createScreen");
+const { removeScreen } = require("./removeScreen");
+const { viewScreen } = require("./viewScreen");
 
 function homeScreen() {
   console.log("homeScreen called:");
-  const types = ["create", "remove", "view"];
+  const types = ["create", "remove", "view", "exit"];
   inquirer
     .prompt([
       {
@@ -25,9 +27,10 @@ function homeScreen() {
           break;
         case "remove":
           console.log("created");
+          removeScreen();
           break;
         case "view":
-          console.log("created");
+          viewScreen();
           break;
 
         default:
