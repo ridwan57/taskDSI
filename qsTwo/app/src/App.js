@@ -1,10 +1,14 @@
 import "./App.css";
 import Login from "./auth/Login/Login";
-import { useState } from "react";
+import React, { useState } from "react";
 import Home from "./pages/Home/Home";
+import { useHistory, Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./component/PrivateRoute";
 
 function App() {
-  const [user, setUser] = useState("ridwan57@we");
+  const history = useHistory();
+  // const [user, setUser] = useState("ridwan57@we");
+  const [user, setUser] = useState(null);
   const logout = () => {
     setUser(null);
   };
@@ -15,13 +19,24 @@ function App() {
       setUser(null);
     }
   };
+  React.useEffect(() => {
+    console.log("here");
+    if (user) {
+      history.push("/");
+    } else {
+      history.push("/login");
+    }
+  }, [user, history]);
   return (
     <div className="App">
-      {user ? (
-        <Home user={user} logout={logout} />
-      ) : (
-        <Login loginData={loginData} />
-      )}
+      <Switch>
+        <Route exact path="/login">
+          <Login loginData={loginData} />
+        </Route>
+        <PrivateRoute path="/">
+          <Home exact user={user} logout={logout} />
+        </PrivateRoute>
+      </Switch>
     </div>
   );
 }

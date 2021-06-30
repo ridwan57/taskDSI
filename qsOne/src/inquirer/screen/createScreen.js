@@ -1,8 +1,8 @@
 module.exports = {};
 module.exports.createScreen = createScreen;
 const inquirer = require("inquirer");
-const { vehicleTypes } = require("../utils/rootFile");
-const { createVehicleQs } = require("./createVehicleQs");
+const { vehicleTypes } = require("../../utils/rootFile");
+const { createVehicleQs } = require("../Question/createVehicleQs");
 const { homeScreen } = require("./homeScreen");
 
 function qsSetter() {}

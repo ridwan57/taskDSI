@@ -1,32 +1,33 @@
 module.exports = {};
 module.exports.homeScreen = homeScreen;
 const inquirer = require("inquirer");
-const { home } = require("../typeList");
+const { home } = require("../../types/typeList");
 const { createScreen } = require("./createScreen");
 const { removeScreen } = require("./removeScreen");
 const { viewScreen } = require("./viewScreen");
 
 function homeScreen() {
-  console.log("homeScreen called:");
+  // console.log("homeScreen called:");
   const types = ["create", "remove", "view", "exit"];
+  
   inquirer
     .prompt([
       {
         type: "list",
-        message: "Go to ",
+        message: "Go to menu - ",
         name: "type",
         choices: types,
       },
     ])
     .then((answers) => {
-      console.log("answers:", answers);
+      // console.log("answers:", answers);
       switch (answers.type) {
         case "create":
-          console.log("created");
+          // console.log("created");
           createScreen();
           break;
         case "remove":
-          console.log("created");
+          // console.log("created");
           removeScreen();
           break;
         case "view":
@@ -36,7 +37,7 @@ function homeScreen() {
         default:
           break;
       }
-      console.log("ok");
+      // console.log("ok");
 
       // Use user feedback for... whatever!!
     })

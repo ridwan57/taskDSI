@@ -1,0 +1,28 @@
+{
+    "visitorCount": 30,
+    "vehicles": [
+        {
+            "model": 3,
+            "enginePower": 3,
+            "tireSize": 3,
+            "engineType": "diesel",
+            "type": "normalVehicle"
+        },
+        {
+            "model": 4,
+            "enginePower": 4,
+            "tireSize": 5,
+            "engineType": "diesel",
+            "weight": 5,
+            "type": "heavyVehicle"
+        },
+        {
+            "model": 8,
+            "enginePower": 90,
+            "tireSize": 5,
+            "engineType": "diesel",
+            "weight": 5,
+            "type": "heavyVehicle"
+        }
+    ]
+}

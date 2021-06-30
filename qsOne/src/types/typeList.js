@@ -26,7 +26,6 @@ const normalVehicle = [
 ];
 showRoom.push({ type: vehicle.normalVehicle, data: normalVehicle });
 
-
 const sportsUpdate = {
   name: "engineType",
   type: "list",
@@ -53,7 +52,7 @@ const heavyVehicle = [
 
 showRoom.push({ type: vehicle.heavyVehicle, data: heavyVehicle });
 
-console.log(JSON.stringify(showRoom));
+// console.log(JSON.stringify(showRoom));
 
 // const showRoom = [{ type: "normalVehicle", data: normalVehicle }];
 module.exports = {
