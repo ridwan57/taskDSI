@@ -2,11 +2,11 @@
     "visitorCount": 50,
     "vehicles": [
         {
-            "modelNumber": 1,
-            "enginePower": 2,
+            "modelNumber": 13,
+            "enginePower": 3,
             "tireSize": 3,
             "engineType": "oil",
-            "turbo": 4,
+            "turbo": 33,
             "type": "sportsVehicle"
         }
     ]

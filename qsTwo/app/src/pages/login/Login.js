@@ -3,13 +3,10 @@ import LoginForm from "../../component/form/LoginForm";
 import { useAuth } from "../../hooks/useAuth";
 import styles from "./Login.module.css";
 function validateEmail(email) {
-  const re =
-    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const re = /^([A-Z\d\.-]+)@(([a-z\d-])+)\.([a-z]{2,8})((\.[a-z]{2,8})?)*$/gi;
   return re.test(String(email).toLowerCase());
 }
-validateEmail("ridwan@gmail.com");
 const Login = () => {
-  console.log("login");
   const { loginData } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,7 +14,6 @@ const Login = () => {
   const [error, setError] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(password, email);
     if (email === "" || password === "") {
       setError("Email or password cannot be empty");
       setEmail("");

@@ -7,6 +7,20 @@ const vehicleTypes = {
   sportsVehicle: "sportsVehicle",
   heavyVehicle: "heavyVehicle",
 };
+//vehicle attributes
+const vehicleAttributes = {
+  modelNumber: "modelNumber",
+  enginePower: "enginePower",
+  tireSize: "tireSize",
+  engineType: "engineType",
+  turbo: "turbo",
+  weight: "weight",
+};
+//data types
+const dataType = {
+  number: "number",
+  list: "list",
+};
 
 // modify keys
 function modify(initial, update) {
@@ -21,37 +35,41 @@ function modify(initial, update) {
 
 //normal
 const normalVehicle = [
-  { name: "modelNumber", type: "number" },
-  { name: "enginePower", type: "number" },
-  { name: "tireSize", type: "number" },
-  { name: "engineType", type: "list", defaultValues: ["oil", "gas", "diesel"] },
+  { name: vehicleAttributes.modelNumber, type: dataType.number },
+  { name: vehicleAttributes.enginePower, type: dataType.number },
+  { name: vehicleAttributes.tireSize, type: dataType.number },
+  {
+    name: vehicleAttributes.engineType,
+    type: dataType.list,
+    defaultValues: ["oil", "gas", "diesel"],
+  },
 ];
 showRoomTypes.push({ type: vehicleTypes.normalVehicle, data: normalVehicle });
 
 //sports
 const sportsUpdate = {
-  name: "engineType",
-  type: "list",
+  name: vehicleAttributes.engineType,
+  type: dataType.list,
   defaultValues: ["oil"],
 };
 
 const sportsVehicle = [
   ...modify(normalVehicle, sportsUpdate),
-  { name: "turbo", type: "number" },
+  { name: vehicleAttributes.turbo, type: dataType.number },
 ];
 
 showRoomTypes.push({ type: vehicleTypes.sportsVehicle, data: sportsVehicle });
 
 //heavy
 const heavyUpdate = {
-  name: "engineType",
-  type: "list",
+  name: vehicleAttributes.engineType,
+  type: dataType.list,
   defaultValues: ["diesel"],
 };
 
 const heavyVehicle = [
   ...modify(normalVehicle, heavyUpdate),
-  { name: "weight", type: "number" },
+  { name: vehicleAttributes.weight, type: dataType.number },
 ];
 
 showRoomTypes.push({ type: vehicleTypes.heavyVehicle, data: heavyVehicle });

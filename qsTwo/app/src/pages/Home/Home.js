@@ -3,7 +3,6 @@ import { useAuth } from "../../hooks/useAuth";
 import styles from "./Home.module.css";
 const Home = () => {
   const { user, logout } = useAuth();
-  console.log("home");
   if (!user) return null;
   return (
     <div className={styles.container}>
