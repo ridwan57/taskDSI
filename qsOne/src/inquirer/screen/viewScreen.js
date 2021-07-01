@@ -1,21 +1,23 @@
 /* eslint-disable  */
-module.exports = {};
-module.exports.viewScreen = viewScreen;
+module.exports = { viewScreen };
 
 const chalk = require("chalk");
-const { readDataFromJson } = require("../../data/index");
+const { readDataFromJson } = require("../../data/readWriteData");
 const { homeScreen } = require("./homeScreen");
 
 function viewScreen() {
-  const data = readDataFromJson();
+  const showroomData = readDataFromJson();
 
-  console.log(chalk.red("Current Available Vehicles: "));
-  data.vehicles?.forEach((element) => {
-    console.table(element);
-  });
-  console.log(chalk.green("visitor count: "));
-  console.table({ visitorCount: data.visitorCount });
-  // console.table(JSON.stringify(data));
-  // console.log(JSON.stringify(data));
+  if (showroomData.vehicles.length > 0) {
+    console.log(chalk.red("Currently Available Vehicles: "));
+    showroomData.vehicles?.forEach((element) => {
+      console.table(element);
+    });
+    console.log(chalk.green("Visitor count: "));
+    console.table({ visitorCount: showroomData.visitorCount });
+  } else {
+    console.log(chalk.red("Showroom is empty "));
+  }
+
   homeScreen();
 }

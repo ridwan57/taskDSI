@@ -1,56 +1,13 @@
 {
-    "visitorCount": 30,
+    "visitorCount": 50,
     "vehicles": [
         {
-            "model": 3,
-            "enginePower": 3,
+            "modelNumber": 1,
+            "enginePower": 2,
             "tireSize": 3,
-            "engineType": "diesel",
-            "type": "normalVehicle"
-        },
-        {
-            "model": 4,
-            "enginePower": 4,
-            "tireSize": 5,
-            "engineType": "diesel",
-            "weight": 5,
-            "type": "heavyVehicle"
-        },
-        {
-            "model": 8,
-            "enginePower": 90,
-            "tireSize": 5,
-            "engineType": "diesel",
-            "weight": 5,
-            "type": "heavyVehicle"
-        },
-        {
-            "model": 78,
-            "enginePower": 56,
-            "tireSize": 34,
-            "engineType": "gas",
-            "type": "normalVehicle"
-        },
-        {
-            "model": 56,
-            "enginePower": 56,
-            "tireSize": 56,
             "engineType": "oil",
-            "type": "normalVehicle"
-        },
-        {
-            "model": 5555,
-            "enginePower": 5,
-            "tireSize": 5,
-            "engineType": "oil",
-            "type": "normalVehicle"
-        },
-        {
-            "model": 9,
-            "enginePower": 7,
-            "tireSize": 76,
-            "engineType": "oil",
-            "type": "normalVehicle"
+            "turbo": 4,
+            "type": "sportsVehicle"
         }
     ]
 }

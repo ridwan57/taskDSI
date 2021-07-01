@@ -1,13 +1,11 @@
 /* eslint-disable */
-module.exports = {};
-module.exports.createScreen = createScreen;
+module.exports = { createScreen };
 const inquirer = require("inquirer");
-const { vehicleTypes } = require("../../types/showRoom");
-const { createVehicleQs } = require("../Question/createVehicleQs");
+const { vehicleTypes } = require("../../types/showRoomTypes");
+const { createVehicleQs } = require("../question/generateVehicleQs");
 
 function createScreen() {
   const types = Object.keys(vehicleTypes);
-  // console.log("types:", types);
   inquirer
     .prompt([
       {
@@ -18,29 +16,14 @@ function createScreen() {
       },
     ])
     .then((answers) => {
-      // console.log("answers:", answers);
-      switch (answers.type) {
-        case vehicleTypes.normalVehicle:
-          // console.log("normalVehicle");
-          createVehicleQs(vehicleTypes.normalVehicle);
-          break;
-        case vehicleTypes.sportsVehicle:
-          // console.log("sportsVehicle");
-          createVehicleQs(vehicleTypes.sportsVehicle);
-          break;
-        case vehicleTypes.heavyVehicle:
-          // console.log("heavyVehicle");
-          createVehicleQs(vehicleTypes.heavyVehicle);
-          break;
-
-        default:
-          break;
+      if (types.includes(answers.type)) {
+        createVehicleQs(answers.type);
+      } else {
+        throw new Error("this type of vehicles currently unavailable");
       }
-      //   homeScreen();
-
-      // Use user feedback for... whatever!!
     })
     .catch((error) => {
+      console.log('error:', error)
       if (error.isTtyError) {
         // Prompt couldn't be rendered in the current environment
       } else {
@@ -48,7 +31,3 @@ function createScreen() {
       }
     });
 }
-// createScreen();
-// module.exports = {
-//   createScreen,
-// };

@@ -1,68 +1,52 @@
 /* eslint-disable */
 const fs = require("fs");
-const { vehicleTypes } = require("../types/showRoom");
-const { readDataFromJson } = require("./index");
+const { vehicleTypes } = require("../types/showRoomTypes");
+const { readDataFromJson, writeDataInJson } = require("./readWriteData");
 
-const dataPath = "src/data/data.json";
-function checkUniqueId(id) {
-  // console.log("id", typeof id);
+function checkUniqueModelNumber(modelNumber) {
   const data = readDataFromJson();
-  const allModel = data.vehicles.map(({ model }) => model);
-  // console.log(`${id}: included:`, allModel.includes(id));
-  return !allModel.includes(id);
+  const allModel = data.vehicles.map(({ modelNumber }) => modelNumber);
+  return !allModel.includes(modelNumber);
 }
 
-function writeData(dataPathToWrite, data) {
-  fs.writeFileSync(dataPathToWrite, JSON.stringify(data, null, 4));
-}
 function checkSportsVehicle(vehicle) {
   return vehicle?.type === vehicleTypes.sportsVehicle;
 }
-function createVehicle(newData) {
-  const data = readDataFromJson();
 
-  if (!checkUniqueId(newData.model)) {
+//create
+function createVehicle(newVehicleData) {
+  const currentVehicleData = readDataFromJson();
+
+  if (!checkUniqueModelNumber(newVehicleData.modelNumber)) {
     return false;
   }
-  if (checkSportsVehicle(newData)) {
-    data.visitorCount += 20;
+  if (checkSportsVehicle(newVehicleData)) {
+    currentVehicleData.visitorCount += 20;
   }
-  data.vehicles.push(newData);
-  // fs.writeFileSync(dataPath, JSON.stringify(data, null, 4));
-  writeData(dataPath, data);
-  // console.log("data:", data);
-  return newData;
+  currentVehicleData.vehicles.push(newVehicleData);
+  writeDataInJson(currentVehicleData);
+  return newVehicleData;
 }
-function removeVehicle(id) {
-  const data = readDataFromJson();
+
+//remove
+function removeVehicle(removeModelNumber) {
+  const currentVehicleData = readDataFromJson();
 
   let removedData = null;
-  const newData = data.vehicles.filter((vehicle) => {
-    if (vehicle.model === id) {
-      // console.log("vehicle.model:", vehicle.model);
+  const filteredVehicleData = currentVehicleData.vehicles.filter((vehicle) => {
+    if (vehicle.modelNumber === removeModelNumber) {
       if (checkSportsVehicle(vehicle)) {
-        data.visitorCount -= 20;
+        currentVehicleData.visitorCount -= 20;
       }
-      // console.log("power");
       removedData = { ...vehicle };
       return false;
     }
     return true;
   });
-  // fs.writeFileSync(dataPath, JSON.stringify(newData, null, 4));
-  writeData(dataPath, { ...data, vehicles: newData });
+  writeDataInJson({ ...currentVehicleData, vehicles: filteredVehicleData });
   return removedData;
 }
 
-// createVehicle({ name: "ridwan" });
-// createVehicle({ name: "ridwan" });
-// createVehicle({ name: "ridwan" });
-// console.log("data:", data);
-
-// console.log(removeVehicle(1));
-// console.log(JSON.parse(fs.readFileSync("data.json")));
-checkUniqueId(3);
-checkUniqueId(9);
 module.exports = {
   createVehicle,
   removeVehicle,

@@ -1,15 +1,14 @@
 /* eslint-disable */
+const showRoomTypes = [];
 
-const showRoom = [];
-
-
-const vehicle = {
+// three types
+const vehicleTypes = {
   normalVehicle: "normalVehicle",
   sportsVehicle: "sportsVehicle",
   heavyVehicle: "heavyVehicle",
 };
 
-//modify keys
+// modify keys
 function modify(initial, update) {
   const newData = initial.filter(
     ({ name: objName }) => objName !== update.name
@@ -18,17 +17,18 @@ function modify(initial, update) {
   return [...newData, update];
 }
 
-//as per requirement
+// as per requirement
 
+//normal
 const normalVehicle = [
-  { name: "model", type: "number" },
+  { name: "modelNumber", type: "number" },
   { name: "enginePower", type: "number" },
   { name: "tireSize", type: "number" },
   { name: "engineType", type: "list", defaultValues: ["oil", "gas", "diesel"] },
 ];
-showRoom.push({ type: vehicle.normalVehicle, data: normalVehicle });
+showRoomTypes.push({ type: vehicleTypes.normalVehicle, data: normalVehicle });
 
-
+//sports
 const sportsUpdate = {
   name: "engineType",
   type: "list",
@@ -40,8 +40,9 @@ const sportsVehicle = [
   { name: "turbo", type: "number" },
 ];
 
-showRoom.push({ type: vehicle.sportsVehicle, data: sportsVehicle });
+showRoomTypes.push({ type: vehicleTypes.sportsVehicle, data: sportsVehicle });
 
+//heavy
 const heavyUpdate = {
   name: "engineType",
   type: "list",
@@ -53,12 +54,13 @@ const heavyVehicle = [
   { name: "weight", type: "number" },
 ];
 
-showRoom.push({ type: vehicle.heavyVehicle, data: heavyVehicle });
+showRoomTypes.push({ type: vehicleTypes.heavyVehicle, data: heavyVehicle });
 
-// console.log(JSON.stringify(showRoom));
+function getVehicleByType(vehicleType) {
+  return showRoomTypes.find(({ type }) => type === vehicleType);
+}
 
-// const showRoom = [{ type: "normalVehicle", data: normalVehicle }];
-// module.exports = {
-//   showRoom,
-//   vehicleTypes: vehicle,
-// };
+module.exports = {
+  vehicleTypes,
+  getVehicleByType,
+};

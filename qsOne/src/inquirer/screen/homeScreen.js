@@ -1,16 +1,22 @@
 /* eslint-disable */
-module.exports = {};
-module.exports.homeScreen = homeScreen;
+module.exports = { homeScreen };
+
+const chalk = require("chalk");
 const inquirer = require("inquirer");
-// const { home } = require("../../types/typeList");
 const { createScreen } = require("./createScreen");
 const { removeScreen } = require("./removeScreen");
 const { viewScreen } = require("./viewScreen");
 
+const homeScreenOptions = {
+  Create: "Create",
+  Remove: "Remove",
+  View: "View",
+  Exit: "Exit",
+};
+
 function homeScreen() {
-  // console.log("homeScreen called:");
-  const types = ["create", "remove", "view", "exit"];
-  
+  const types = Object.keys(homeScreenOptions);
+
   inquirer
     .prompt([
       {
@@ -22,24 +28,26 @@ function homeScreen() {
     ])
     .then((answers) => {
       switch (answers.type) {
-        case "create":
+        case homeScreenOptions.Create:
           createScreen();
           break;
-        case "remove":
+        case homeScreenOptions.Remove:
           removeScreen();
           break;
-        case "view":
+        case homeScreenOptions.View:
           viewScreen();
+          break;
+        case homeScreenOptions.Exit:
+          console.log(chalk.red("Exited...."));
           break;
 
         default:
+          throw new Error("Unavailable Command,Exiting.....");
           break;
       }
-      // console.log("ok");
-
-      // Use user feedback for... whatever!!
     })
     .catch((error) => {
+      console.log("error:", error);
       if (error.isTtyError) {
         // Prompt couldn't be rendered in the current environment
       } else {
@@ -47,4 +55,3 @@ function homeScreen() {
       }
     });
 }
-// homeScreen();

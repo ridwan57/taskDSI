@@ -1,31 +1,30 @@
 /* eslint-disable */
-module.exports = {};
-module.exports.createVehicleQs = createVehicleQs;
+module.exports = { createVehicleQs };
+
 const chalk = require("chalk");
 const inquirer = require("inquirer");
 const { createVehicle } = require("../../data/functions");
-
-const { showRoom } = require("../../types/showRoom");
+const { getVehicleByType } = require("../../types/showRoomTypes");
 const { homeScreen } = require("../screen/homeScreen");
 
-function getVehicle(vehicleType) {
-  return showRoom.find(({ type }) => type === vehicleType);
-}
-
-const validateNumbers = (moreValidationChecks) => ({
+//inquirer validator
+const validateNumbers = () => ({
   validate: (input) => {
     if (input === "") {
       return "Please provide a valid number greater then 0";
     }
-    return moreValidationChecks ? moreValidationChecks(input) : true;
+    return true;
   },
   filter: (input) =>
     // clear the invalid input
     Number.isNaN(input) || Number(input) <= 0 ? "" : Number(input),
 });
+
+//questionsCreatedByTypes
 const qsObjByTypes = (vehicleType) => {
-  const vehicleData = getVehicle(vehicleType);
-  return vehicleData.data.map(({ name, type, defaultValues = null }) => {
+  const vehicleDataType = getVehicleByType(vehicleType);
+  return vehicleDataType.data.map(({ name, type, defaultValues = null }) => {
+    //number type
     if (type === "number") {
       const qsObj = {
         name,
@@ -35,37 +34,36 @@ const qsObjByTypes = (vehicleType) => {
         ...validateNumbers(),
       };
       return qsObj;
+    } else if (type === "list") {
+      //list type
+      const qsObj = {
+        name,
+        type,
+        message: `add ${name}`,
+        choices: defaultValues,
+      };
+      return qsObj;
+    } else {
+      throw new Error(`this type: ${type} is unexpected,exiting..`);
     }
-    const qsObj = {
-      name,
-      type,
-      message: `add ${name}`,
-      choices: defaultValues,
-    };
-    return qsObj;
-
-    // return qsObj;
-    // console.log(name, type, defaultValues);
   });
 };
 
+//main inquirer function
 function createVehicleQs(type) {
   inquirer
     .prompt(qsObjByTypes(type))
     .then((answers) => {
-      // console.log("answers really:", answers);
-      // console.log("ok");
       const newData = createVehicle({
         ...answers,
         type,
       });
-      // console.log(newData);
       if (newData) {
         console.log(chalk.green("data created: "));
-        console.table(answers);
+        console.table(newData);
       } else {
         console.log(chalk.red("Data creation failed: "));
-        console.log(chalk.red("Id must be unique : ", answers.model));
+        console.log(chalk.red(`Id: ${answers.modelNumber} not unique `));
       }
       return homeScreen();
     })
@@ -78,4 +76,3 @@ function createVehicleQs(type) {
       }
     });
 }
-// createVehicleQs();
